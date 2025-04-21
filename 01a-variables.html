@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="coffeeNumber++">Add Coffee</button>
+    <button onclick="bagelNumber++">Add Bagel</button>
+    <button onclick="soupNumber++">Add Soup</button>
+    <button onclick="
+        totalCost = coffeeCost * coffeeNumber + bagelCost * bagelNumber + soupCost * soupNumber; 
+        console.log(`Cost of food: ${totalCost}`)
+        console.log(`Food tax is: ${totalCost*0.1}`)
+        console.log(`Total cost is: ${totalCost+totalCost*0.1}`)
+    ">Show Price</button>
+    <script>
+
+        const name = "Doğukan";
+
+        console.log(`Welcome ${name}`);
+        let coffeeCost = 5;
+        let bagelCost = 3;
+        let soupCost = 9;
+
+        let coffeeNumber = 0;
+        let bagelNumber = 0;
+        let soupNumber = 0;
+
+        let totalCost = coffeeCost * coffeeNumber + bagelCost * bagelNumber + soupCost * soupNumber; 
+        console.log(`Cost of food: ${totalCost}`)
+        console.log(`Food tax is: ${totalCost*0.1}`)
+        console.log(`Total cost is: ${totalCost+totalCost*0.1}`)
+
+    </script>
+</body>
+</html>

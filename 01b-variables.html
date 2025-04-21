@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <p>
+        <button onclick="calculation += '1'">1</button>;
+        <button onclick="calculation += '2'">2</button>;
+        <button onclick="calculation += '3'">3</button>;
+    </p>
+    <p>
+        <button onclick="calculation += '4'">4</button>;
+        <button onclick="calculation += '5'">5</button>;
+        <button onclick="calculation += '6'">6</button>;
+    </p>
+    <p>
+        <button onclick="calculation += '7'">7</button>;
+        <button onclick="calculation += '8'">8</button>;
+        <button onclick="calculation += '9'">9</button>;
+    </p>
+    <button onclick="calculation+='+'">+</button>;
+    <button onclick="
+        console.log(`${calculation} = ${eval(calculation)}`)
+        calculation = ''
+    ">=</button>;
+    <script>
+
+        let calculation = '';
+
+    </script>
+</body>
+</html>

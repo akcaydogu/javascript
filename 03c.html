@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Length</title>
+</head>
+<body>
+    <script>
+
+        function convertLength(length, from, to) {
+            if (from === 'km') {
+                if (to === 'miles') {
+                    return `${length*.62} ${to}`
+                } else if (to === 'km') {
+                    return `${length} ${to}`
+                } else if (to === 'ft') {
+                    return `${length*3281} ${to}`
+                }
+            } else if (from === 'miles') {
+                if (to === 'miles') {
+                    return `${length} ${to}`
+                } else if (to === 'km') {
+                    return `${length*1.6} ${to}`
+                } else if (to === 'ft') {
+                    return `${length*5280} ${to}`
+                }
+            } else if (from === 'ft') {
+                if (to === 'miles') {
+                    return `${length/5280} ${to}`
+                } else if (to === 'km') {
+                    return `${length/3281} ${to}`
+                } else if (to === 'ft') {
+                    return `${length} ${to}`
+                }
+            } else {
+                return 'Please enter correct unit'
+            }
+        }
+
+        console.log(convertLength(10, 'lbs', 'ft'))
+
+    </script>
+</body>
+</html>

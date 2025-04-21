@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Quantity</title>
+</head>
+<body>
+    <button onclick="
+        console.log(`Cart Quantity ${cartQuantity}`);  
+    ">Show Quantity</button>
+    <p>
+        <button onclick="
+            if (cartQuantity + 1 <= maxCartQuantity) {
+                cartQuantity++;
+            } else {
+                console.log('Max cart quantity is 10')
+            }
+            console.log(`Cart Quantity ${cartQuantity}`);
+        ">Add to Cart</button>
+        <button onclick="
+            if (cartQuantity + 2 <= maxCartQuantity) {
+                cartQuantity+=2
+            } else {
+                console.log('Max cart quantity is 10')
+            }
+            console.log(`Cart Quantity ${cartQuantity}`);
+        ">+2</button>
+        <button onclick="
+            if (cartQuantity + 3 <= maxCartQuantity) {
+                cartQuantity+=3
+            } else {
+                console.log('Max cart quantity is 10')
+            }
+            console.log(`Cart Quantity ${cartQuantity}`);
+        ">+3</button>
+    </p>
+    <p>
+        <button onclick="
+            if (cartQuantity > 0) {
+                cartQuantity--;
+                console.log(`Cart Quantity ${cartQuantity}`);
+            } else {
+                console.log('There is no items in cart')
+            }  
+            
+        ">Remove from cart</button>
+        <button onclick="
+            if (cartQuantity >= 2) {
+                cartQuantity -= 2;
+                console.log(`Cart Quantity ${cartQuantity}`);
+            } else {
+                console.log('All items cleared in cart');
+            }
+        ">-2</button>
+        <button onclick="
+            if (cartQuantity >= 3) {
+                cartQuantity -= 3;
+                console.log(`Cart Quantity ${cartQuantity}`);
+            } else {
+                console.log('All items cleared in cart');
+            }        
+        ">-3</button>
+    </p>
+    <button onclick="
+        cartQuantity = 0
+        console.log(`Cart Quantity Resetted`)
+    ">Reset Cart</button>
+
+    <script>
+        let cartQuantity = 0;
+        let maxCartQuantity = 10;
+
+    </script>
+</body>
+</html>

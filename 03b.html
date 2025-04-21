@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Degree Converter</title>
+</head>
+<body>
+    <script>
+
+
+        function convertToFahrenheit(celsius) {
+            return celsius*9/5 + 32            
+        }
+
+        function convertToCelsius(fahrenheit) {
+            return (fahrenheit-32)*5/9
+        }
+
+        function convertTemperature(value, unit) {
+            if (unit === 'C') {
+                return (value-32)*5/9
+            } else if (unit === 'F') {
+                return value*9/5 + 32
+            } else {
+                return "Please enter correct unit"
+            }
+        }
+
+        console.log(convertToFahrenheit(40))
+        console.log(convertToCelsius(104))
+        console.log(convertTemperature(10, 'C'))
+    </script>
+</body>
+</html>
