@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="updateText()">Add to cart</button>
+    <p class="js-text"></p>
+    <script>
+        let timeoutId;
+        function updateText() {
+            const textElement = document.querySelector('.js-text');
+            textElement.innerHTML = 'Added'
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(function(){
+                textElement.innerHTML = ''
+            }, 2000)
+        }
+    </script>
+</body>
+</html>

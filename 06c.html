@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On/Off</title>
+    <style>
+        .toggle-btn {
+            background-color: rgb(204, 51, 0);
+            border: none;
+            border-radius: 10px;
+            padding: 5px 15px;
+        }
+
+        .is-toggled {
+            background-color: rgb(51, 204, 51);
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-btn btn-g" onclick="toggle('.btn-g')">Gaming</button>
+    <button class="toggle-btn btn-m" onclick="toggle('.btn-m')">Music</button>
+    <button class="toggle-btn btn-t" onclick="toggle('.btn-t')">Tech</button>
+
+    <script>
+ 
+        function toggle(selector) {
+            const btnElement = document.querySelector(selector);
+            if (btnElement.classList.contains('is-toggled')) {
+                btnElement.classList.remove('is-toggled')
+            } else {
+                turnOfPreviousButton()
+                btnElement.classList.add('is-toggled')
+            }
+        }
+        function turnOfPreviousButton(){
+            const previousButton = document.querySelector('.is-toggled');
+            if(previousButton) {
+                previousButton.classList.remove('is-toggled')
+            }
+        }
+    </script>
+</body>
+</html>

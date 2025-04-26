@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Project</title>
+</head>
+<body>
+    <script>
+
+        let product = {
+            name: 'basketball',
+            price: 2095,
+        }
+
+        let product2 = {
+            name: 'football',
+            price: 2100
+        }
+
+        console.log(product);
+
+        product.price += 500;
+        console.log(product);
+
+        product['delivery-time'] = '3 days'
+        console.log(product);
+
+        function comparePrice(p1, p2) {
+            console.log(p1.price < p2.price ? `${p1.price} ${p1.name} is less expensive` : `${p2.price} ${p2.name} is less expensive`)
+        }
+
+        comparePrice(product, product2)
+
+        console.log('Good Morning'.toLowerCase())
+        console.log('test'.repeat(3))
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heads and Tails DOM</title>
+</head>
+<body>
+    <p>Heads & Tails</p>
+    <button onclick="handleMove('heads')">heads</button>
+    <button onclick="handleMove('tails')">tails</button>
+    <p class="pick"></p>
+
+    <script>
+
+        let playerMove = '';
+
+        function handleMove(pMove) {
+            playerMove = pMove;
+            updatePickElement();
+        }
+
+        function updatePickElement() {
+            const pickElement = document.querySelector('.pick');
+            pickElement.innerHTML = `You chose: ${playerMove}`;
+        }
+
+    </script>
+</body>
+</html>

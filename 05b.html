@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Name">
+    <button onclick="getName()">Submit</button>
+    <p></p>
+
+    <script>
+
+        const inputElement = document.querySelector("input");
+        const nameElement = document.querySelector('p');
+        inputElement.addEventListener("keydown", function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                getName();
+            }
+        })
+
+        function getName() {
+            let nameValue = inputElement.value;
+            console.log(nameValue);
+            document.querySelector('p').innerHTML = `Your name is: ${nameValue}`
+        }
+    </script>
+
+</body>
+</html>

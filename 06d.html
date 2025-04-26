@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial;
+        }
+
+        .gray-btn {
+            background-color: rgb(51, 51, 51);
+            color: white;
+        }
+
+        .orange-btn {
+            background-color: rgb(254, 160, 10);
+            color: white;
+        }
+
+
+        .calc-btn {
+            height: 60px;
+            width: 60px;
+            border-radius: 60px;
+            border: none;
+            font-size: 26px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .clear-btn {
+            font-size: 15px;
+        }
+
+        .result {
+            font-size: 45px;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <p class="result"></p>
+    <button class="calc-btn gray-btn" onclick="addToCalculation(1)">1</button>    
+    <button class="calc-btn gray-btn" onclick="addToCalculation(2)">2</button>
+    <button class="calc-btn gray-btn" onclick="addToCalculation(3)">3</button>
+    <button class="calc-btn orange-btn" onclick="addToCalculation('+')">+</button>
+    <p></p>
+    <button class="calc-btn gray-btn" onclick="addToCalculation(4)">4</button>
+    <button class="calc-btn gray-btn" onclick="addToCalculation(5)">5</button>
+    <button class="calc-btn gray-btn" onclick="addToCalculation(6)">6</button>
+    <button class="calc-btn orange-btn" onclick="addToCalculation('-')">-</button>
+    <p></p>
+    <button class="calc-btn gray-btn" onclick="addToCalculation(7)">7</button>        
+    <button class="calc-btn gray-btn" onclick="addToCalculation(8)">8</button>
+    <button class="calc-btn gray-btn" onclick="addToCalculation(9)">9</button>
+    <button class="calc-btn orange-btn" onclick="addToCalculation('*')">*</button>   
+    <p></p> 
+    <button class="calc-btn gray-btn" onclick="addToCalculation(0)">0</button>        
+    <button class="calc-btn gray-btn" onclick="addToCalculation('.')">.</button>
+    <button class="calc-btn gray-btn" onclick="addToCalculation('=')">=</button>
+    <button class="calc-btn orange-btn" onclick="addToCalculation('/')">/</button>   
+    <p></p>
+    <button class="calc-btn gray-btn clear-btn" onclick="">Clear</button>
+
+    <script>
+        let calculation = ''
+        const textElement = document.querySelector('.result');
+
+        function addToCalculation(value) {
+            if (value === '=') {
+                calculation = `${eval(calculation)}`
+                updateResult();
+                return
+            }
+            calculation += value;
+            updateResult();
+        }
+
+
+        function updateResult() {
+            textElement.textContent = calculation;
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Quantity</title>
+</head>
+<body>
+    <button onclick="updateQuantity()">Show Quantity</button>
+    <button onclick="addQuantity(1)">Add to Cart</button>
+    <button onclick="addQuantity(2)">+2</button>
+    <button onclick="addQuantity(3)">+3</button>
+    <button onclick="addQuantity(4)">+4</button>
+    <button onclick="addQuantity(5)">+5</button>
+    <button onclick="removeQuantity(1)">Remove from cart</button>
+    <button onclick="removeQuantity(2)">-2</button>
+    <button onclick="removeQuantity(3)">-3</button>
+    <p></p>
+
+    <script>
+
+        const cartQuantityTextElement = document.querySelector('p');
+        let cartQuantity = 0;
+        let maxCartQuantity = 10;
+
+        cartQuantityTextElement.textContent = `Cart Quantity: ${cartQuantity}`;
+
+        function addQuantity(amount) {
+            if (cartQuantity + amount <= maxCartQuantity) {
+                cartQuantity+=amount;
+            } else {
+                alert("You cannot add more than 10 items")
+            }
+            updateQuantity();
+        }
+
+        function removeQuantity(amount) {
+            if (cartQuantity - amount >= 0) {
+                cartQuantity-= amount;
+            } else {
+                cartQuantity = 0;
+                alert("There is no items in cart")
+            }
+            updateQuantity();
+        }
+
+        function updateQuantity() {
+            cartQuantityTextElement.textContent = `Cart Quantity: ${cartQuantity}`;
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <button onclick="addToCalculation(1)">1</button>    
+    <button onclick="addToCalculation(2)">2</button>
+    <button onclick="addToCalculation(3)">3</button>
+    <button onclick="addToCalculation('+')">+</button>
+    <p></p>
+    <button onclick="addToCalculation(4)">4</button>
+    <button onclick="addToCalculation(5)">5</button>
+    <button onclick="addToCalculation(6)">6</button>
+    <button onclick="addToCalculation('-')">-</button>
+    <p></p>
+    <button onclick="addToCalculation(7)">7</button>        
+    <button onclick="addToCalculation(8)">8</button>
+    <button onclick="addToCalculation(9)">9</button>
+    <button onclick="addToCalculation('*')">*</button>   
+    <p></p> 
+    <button onclick="addToCalculation('=')">=</button>
+    <p class="result"></p>
+
+    <script>
+        let calculation = ''
+        const textElement = document.querySelector('.result');
+
+        function addToCalculation(value) {
+            if (value === '=') {
+                calculation += `=${eval(calculation)}`
+                updateResult();
+                calculation = ''
+                return
+            }
+            calculation += value;
+            updateResult();
+        }
+
+
+        function updateResult() {
+            textElement.textContent = calculation;
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects</title>
+</head>
+<body>
+    <script>
+
+        const product = {
+            name: 'socks',
+            price: 1090
+        }
+
+        console.log(localStorage.getItem('message'))
+
+        let product2 = {
+            name: 'computer',
+            price: 10
+        }
+
+        console.log(typeof product)
+        console.log(product)
+        console.log(product.name)
+        console.log(product.price)
+
+        product.name = 'Test'
+        console.log(product)
+        console.log(product2)
+        delete product.name
+        console.log(product)
+
+        console.log(JSON.stringify(product2));
+
+        const jsonString = JSON.stringify(product2);
+        console.log(JSON.parse(jsonString))
+
+        localStorage.setItem('message', 'hello')
+
+
+    </script>
+</body>
+</html>

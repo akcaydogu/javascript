@@ -1,0 +1,113 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Projects</title>
+</head>
+<body>
+    <p>YouTube Subscribe Button</p>
+    <button onclick="subscribe()" class="subscribe-btn">Subscribe</button>
+
+
+    <p>Rock Paper Scissors</p>
+    <button onclick="playGame('rock')">Rock</button>    
+    <button onclick="playGame('paper')">Paper</button>    
+    <button onclick="playGame('scissors')">Scissors</button>    
+    <p class="result"></p>
+    <p class="vs"></p>
+    <p class="score"></p>
+    <button onclick="resetScore()">Reset Score</button>
+    <script>
+
+        let score = JSON.parse(localStorage.getItem('score')) || {
+            wins: 0,
+            losses: 0,
+            ties: 0
+        }
+
+        function subscribe() {
+            const buttonElement = document.querySelector('.subscribe-btn'); 
+            if (buttonElement.innerHTML === 'Subscribe') {
+                buttonElement.innerHTML = 'Subscribed'
+            } else {
+                buttonElement.innerHTML = 'Subscribe'
+            }
+        }
+
+        function resetScore() {
+            score.wins = 0;
+            score.losses = 0;
+            score.ties = 0
+            updateScoreElement();
+        }
+
+        let computerGuess = '';
+        let message = '';
+        function playGame(playerMove) {
+            pickComputerGuess();
+
+
+            if (playerMove === 'rock') {
+                if (computerGuess === 'rock') {
+                    score.ties++
+                    message = 'Tie'
+                } else if (computerGuess === 'paper') {
+                    score.losses++
+                    message = 'Lose'
+                } else {
+                    score.wins++
+                    message = 'Win'
+                }
+            } else if (playerMove === 'paper') {
+                if (computerGuess === 'paper') {
+                    score.ties++
+                    message = 'Tie'
+                } else if (computerGuess === 'scissors') {
+                    score.losses++
+                    message = 'Lose'
+                } else {
+                    score.wins++
+                    message = 'Win'
+                }
+            } else if (playerMove === 'scissors') {
+                if (computerGuess === 'scissors') {
+                    score.ties++
+                    message = 'Tie'
+                } else if (computerGuess === 'rock') {
+                    score.losses++
+                    message = 'Lose'
+                } else {
+                    score.wins++
+                    message = 'Win'
+                }
+            }
+
+            updateScoreElement(playerMove);
+            localStorage.setItem('score', JSON.stringify(score));
+        }
+
+        function updateScoreElement(playerMove) {
+            const resultElement = document.querySelector('.result');
+            const vsElement = document.querySelector('.vs');
+            const scoreElement = document.querySelector('.score');
+            resultElement.innerHTML = `You ${message}`;
+            vsElement.innerHTML = `You ${playerMove} - ${computerGuess} Computer`;
+            scoreElement.innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`
+        }
+
+        function pickComputerGuess() {
+            let randomNumber = Math.random();
+
+            if (randomNumber < 1/3) {
+                computerGuess = 'rock'
+            } else if (randomNumber >= 1/3 && randomNumber < 2/3) {
+                computerGuess = 'paper'
+            } else {
+                computerGuess = 'scissors'
+            }
+        }
+
+
+    </script>
+</body>
+</html>
