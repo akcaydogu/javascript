@@ -1,5 +1,6 @@
-
-
+import { cart, addToCart, updateCartQuantity } from '../data/cart.js'
+import { products } from '../data/products.js'
+import { formatCurrency } from './utils/money.js';
 let productsHTML = '';
 
 products.forEach((product) => {
@@ -23,7 +24,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-price">
-            $${(product.priceCents / 100).toFixed(2)}
+            $${formatCurrency(product.priceCents)}
           </div>
 
           <div class="product-quantity-container">
@@ -43,7 +44,7 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -56,34 +57,28 @@ products.forEach((product) => {
 })
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+let t;
+
 
 document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
-        const productId = button.dataset.productId;
+        const { productId } = button.dataset;
 
-        let matchingItem;
-        cart.forEach((item) => {
-            if (productId === item.productId) {
-                matchingItem = item
-            }
-        })
+        addToCart(productId);
 
-        const quantity = Number(document.querySelector(`.js-quantity-selector-${productId}`).value);
+        updateCartQuantity();
 
-        if(matchingItem) {
-            matchingItem.quantity += quantity;
-        } else {
-            cart.push({
-                productId: productId,
-                quantity: quantity
-            }
-        );
+        document.querySelector(`.js-added-to-cart-${productId}`).classList.add('add-to-cart-success')
+        if (t) {
+            clearTimeout(t)
         }
-        let cartQuantity = 0
-        cart.forEach((item) => {
-            cartQuantity += item.quantity;
-        });
+        const timeoutId = setTimeout(() => {
+            document.querySelector(`.js-added-to-cart-${productId}`).classList.remove('add-to-cart-success')
+        }, 2000)
+        t = timeoutId
 
-        document.querySelector('.js-cart-quantity').innerHTML = cartQuantity
+        console.log(cart)
     })
 })
+
+updateCartQuantity();
