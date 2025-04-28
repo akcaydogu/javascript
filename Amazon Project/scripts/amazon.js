@@ -1,4 +1,4 @@
-import { cart, addToCart, updateCartQuantity } from '../data/cart.js'
+import { cart } from '../data/cart-class.js'
 import { products } from '../data/products.js'
 import { formatCurrency } from './utils/money.js';
 let productsHTML = '';
@@ -66,9 +66,9 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
     button.addEventListener('click', () => {
         const { productId } = button.dataset;
 
-        addToCart(productId);
+        cart.addToCart(productId);
 
-        updateCartQuantity();
+        cart.updateCartQuantity();
 
         document.querySelector(`.js-added-to-cart-${productId}`).classList.add('add-to-cart-success')
         if (t) {
@@ -82,5 +82,3 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
         console.log(cart)
     })
 })
-
-updateCartQuantity();

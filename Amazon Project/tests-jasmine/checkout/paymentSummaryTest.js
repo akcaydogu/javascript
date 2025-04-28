@@ -1,4 +1,4 @@
-import { loadFromStorage, cart } from "../../data/cart.js";
+import { cart } from "../../data/cart-class.js";
 import { renderPaymentSummary } from "../../scripts/checkout/paymentSummary.js";
 
 describe('test suite: renderPaymentSummary', () => {
@@ -12,19 +12,16 @@ describe('test suite: renderPaymentSummary', () => {
             <div class="js-payment-summary"></div>
             <div class="js-product-name"></div>
         `;
-        spyOn(localStorage, 'getItem').and.callFake(() => {
-            return JSON.stringify([{
-                productId: productId1,
-                quantity: 2,
-                deliveryOptionId: '1'
-            }, {
-                productId: productId2,
-                quantity: 1,
-                deliveryOptionId: '2'
-            }]);
-        });
+        cart.cartItems = [{
+            productId: productId1,
+            quantity: 2,
+            deliveryOptionId: '1'
+          }, {
+            productId: productId2,
+            quantity: 1,
+            deliveryOptionId: '2'
+          }];
 
-        loadFromStorage();
         renderPaymentSummary();
     });
     afterEach(() => {

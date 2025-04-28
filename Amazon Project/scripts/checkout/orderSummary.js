@@ -1,4 +1,4 @@
-import {cart, removeFromCart, updateQuantity, updateDeliveryOption} from '../../data/cart.js';
+import {cart} from '../../data/cart-class.js';
 import { products, getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOptions.js'
@@ -9,7 +9,7 @@ import { renderCheckoutHeader } from './checkoutHeader.js';
 export function renderOrderSummary() {
   let cartSummaryHTML = '';
 
-  cart.forEach((cartItem) => {
+  cart.cartItems.forEach((cartItem) => {
       const productId = cartItem.productId;
       
       const matchingProduct = getProduct(productId);
@@ -97,7 +97,7 @@ export function renderOrderSummary() {
   document.querySelectorAll('.js-delete-link').forEach((link) => {
       link.addEventListener('click', () => {
           const { productId } = link.dataset;
-          removeFromCart(productId)
+          cart.removeFromCart(productId)
 
           document.querySelector(`.js-cart-item-container-${productId}`).remove();
 
@@ -130,7 +130,7 @@ export function renderOrderSummary() {
         const container = document.querySelector(`.js-cart-item-container-${productId}`)
         container.classList.remove('is-editing-quantity')
         const quantity = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
-        updateQuantity(productId, quantity)
+        cart.updateQuantity(productId, quantity)
         renderCheckoutHeader();
         updateQuantityLink(productId, quantity)
         renderPaymentSummary();
@@ -144,7 +144,7 @@ export function renderOrderSummary() {
         const container = document.querySelector(`.js-cart-item-container-${productId}`)
         container.classList.remove('is-editing-quantity')
         const quantity = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
-        updateQuantity(productId, quantity)
+        cart.updateQuantity(productId, quantity)
         renderCheckoutHeader();
         updateQuantityLink(productId, quantity)
       }
@@ -154,7 +154,7 @@ export function renderOrderSummary() {
   document.querySelectorAll('.js-delivery-option').forEach((element) => {
     element.addEventListener('click', () => {
       const {productId, deliveryOptionId} = element.dataset;
-      updateDeliveryOption(productId, deliveryOptionId);
+      cart.updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
       renderPaymentSummary();
     })

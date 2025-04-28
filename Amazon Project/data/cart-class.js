@@ -101,11 +101,11 @@ class Cart {
     };
 }
 
-const cart = new Cart('cart-oop');
+export const cart = new Cart('cart');
 const businessCart = new Cart('cart-business');
 
 console.log(cart);
-console.log(businessCart)
+console.log(businessCart);
 console.log(cart instanceof Cart);
 
 
