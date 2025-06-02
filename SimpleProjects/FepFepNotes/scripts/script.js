@@ -1,5 +1,9 @@
+import './data/category.js'
+import './data/note.js'
+
 let notes;
 let categories;
+
 
 
 const noteBoxElement = document.querySelector('.notes-container');
@@ -23,6 +27,9 @@ const categoryTextColorElement = document.getElementById('categoryText');
 const categoryPreviewElement = document.getElementById('categoryPreview');
 const categoryFormElement = document.getElementById('categoryForm');
 const categoryContainer = document.getElementById('categoryContainer')
+const editCategoryModal = document.getElementById('editCategoryModal')
+const closeEditCategoryModal = document.getElementById('closeCategoryEditModalBtn');
+const editModalBody = document.getElementById('editModalBody');
 
 addNoteElement.addEventListener('click', openAddNoteModal);
 closeModalBtnElement.addEventListener('click', closeAddNoteModal);
@@ -35,6 +42,9 @@ categoryElement.addEventListener('change', filterNotes)
 
 openCategoryModalElement.addEventListener('click', openAddCategoryModal);
 closeCategoryModalElement.addEventListener('click', closeAddCategoryModal);
+
+closeEditCategoryModal.addEventListener('click', closeCategoryEditModal)
+
 categoryBackgroundColorElement.addEventListener('change', changeCategoryPreview);
 categoryTextColorElement.addEventListener('change', changeCategoryPreview);
 categoryFormElement.addEventListener('submit', handleCategorySubmit);
@@ -133,7 +143,6 @@ function renderCategories() {
     let categoryListHTML = '<option value="all">All notes</option>'
 
     categories.forEach((category) => {
-        console.log(category)
         categoryHTML += `
             <label class="tag-option">
                 <input 
@@ -151,6 +160,8 @@ function renderCategories() {
             <option value="${category.title.toLowerCase()}">${category.title}</option>
         `
     })
+    categoryListHTML += '<option value="edit">Edit Category</option>'
+
 
 
     categoryElement.innerHTML = categoryListHTML;
@@ -296,9 +307,66 @@ function addCategory() {
 
 }
 
+function removeCategory(deleteId) {
+    catTitle = categories[deleteId].title
+    console.log(catTitle)
+    notes.forEach((note, index) => {
+        if (note.category === catTitle) {
+            notes.splice(index, 1);
+        }
+    })
+    categories.splice(deleteId, 1);
+    saveToStorage();
+    renderNotes();
+    renderCategories();
+    renderEditModal();
+}
+
+function openCategoryEditModal() {
+    editCategoryModal.classList.add('active');
+    document.body.style.overflow = "hidden";
+    renderEditModal();
+}
+
+function closeCategoryEditModal() {
+    editCategoryModal.classList.remove('active');
+    document.body.style.overflow = "auto";
+    categoryElement.value = 'all'
+}
+
+function renderEditModal() {
+    let editHTML = ``
+
+    categories.forEach((category, index) => {
+        editHTML += `
+            <div class="edit-category">
+                ${category.title}
+                <div>
+                    <button class="edit-btn">Edit</button>
+                    <button class="remove-btn" data-id=${index}>Delete</button>
+                </div>
+            </div>
+        `
+    })
+
+    editModalBody.innerHTML = editHTML;
+
+    document.querySelectorAll('.remove-btn').forEach((btn) => {
+        btn.addEventListener('click', function() {
+            deleteId = parseInt(this.getAttribute("data-id"))
+            removeCategory(deleteId)
+        })
+    })
+}
+
 function filterNotes(){
     const search = searchBarElement.value.toLowerCase();
     const categoryFilter = categoryElement.value.toLowerCase();
+
+    if(categoryFilter === 'edit') {
+        openCategoryEditModal();
+        return;
+    }
 
     let filteredNotes = notes;
 
@@ -329,4 +397,5 @@ function emptyNote(regularNote = notes) {
 categoryStyles();
 renderCategories();
 renderNotes();
+renderEditModal();
 

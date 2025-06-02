@@ -379,6 +379,42 @@ input[type="color"]::-webkit-color-swatch {
     color: white;
 }
 
+.edit-category {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.2);
+    padding: 12px 15px;
+    font-size: 1rem;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-category button {
+    border: none;
+    box-shadow: 0 0 0 1px rgba(79, 70, 229, 0.2);
+    padding: 12px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background-color: #63db75;
+}
+
+.remove-btn {
+    background-color: #D94F56;
+}
+
+.edit-btn
+
+.edit-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
 hr {
     border: 1px solid #2F2F2F
 }
